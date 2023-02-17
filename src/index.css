@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.list-box {
+  opacity: .90;
+  -webkit-box-shadow: 2px 2px 13px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 2px 13px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 2px 13px 0px rgba(0, 0, 0, 0.75);
+  transition: all 0.3s;
+}
+
+.list-box:hover{
+  opacity: 1;
+}
+
+
+
+.list-box .title {
+  font-family: Helvetica;
+  font-size: 20px;
+  font-weight: 500;
+}
