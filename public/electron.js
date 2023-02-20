@@ -1,9 +1,10 @@
 const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev'); // to check if electron is in development mode
 const path = require('path');
+const { initDB } = require('./database/init');
+const { initialDBEvents } = require('./database/events');
 
-
-
+initDB();
 
 const createWindow = () => {
     let mainWindow = new BrowserWindow({
@@ -40,3 +41,5 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     app.quit();
 });
+
+initialDBEvents();
