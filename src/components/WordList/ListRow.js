@@ -5,7 +5,8 @@ import { BsFillPencilFill } from 'react-icons/bs';
 
 
 const ListRow = (props)=>{
-    const { id, keyword, value } = props
+    const { id, keyword, value, onDelete, onUpdate } = props
+
     return (
         <div className="row">
                 <div className="col-5 mt-2">
@@ -28,10 +29,10 @@ const ListRow = (props)=>{
                 <div className="col-2 mt-2">
                     <div className="row">
                         <div className="col-6">
-                            <button className="btn btn-outline-warning p-3 w-100"><BsFillPencilFill/></button>
+                            <button className="btn btn-outline-warning p-3 w-100" onClick={onUpdate}><BsFillPencilFill/></button>
                         </div>
                         <div className="col-6">
-                            <button className="btn btn-outline-danger p-3 w-100"><RiDeleteBin2Fill /></button>
+                            <button className="btn btn-outline-danger p-3 w-100" onClick={onDelete} ><RiDeleteBin2Fill /></button>
                         </div>
                     </div>
                 </div>
