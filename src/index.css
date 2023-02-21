@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 code {
@@ -20,14 +26,27 @@ code {
   transition: all 0.3s;
 }
 
-.list-box:hover{
+.list-box:hover {
   opacity: 1;
 }
-
-
 
 .list-box .title {
   font-family: Helvetica;
   font-size: 20px;
   font-weight: 500;
+}
+
+.list-row-container {
+  max-height: calc(100vh - 220px);
+  overflow-y: scroll;
+}
+
+.list-row-container::-webkit-scrollbar {
+  display: none;
+}
+
+
+.list-row-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
