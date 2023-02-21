@@ -9,7 +9,7 @@ import { AiOutlinePlusCircle } from 'react-icons/ai'
 const Navbar = () => {
     const navbarInfoText = useSelector(state => state.navbar.navbarInfoText);
     return (
-        <div className="bg-secondary">
+        <div className="bg-secondary fixed-top">
             <nav className="navbar navbar-expand bg-body-tertiary navbar-dark container">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">minemosin</Link>
