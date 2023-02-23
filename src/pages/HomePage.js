@@ -27,6 +27,7 @@ const HomePage = () => {
                 {lists.map((wordList, index) => {
                     return (
                         <ListCard
+                            key={wordList.id}
                             title={wordList.title}
                             wordCount=""
                             link={`/list-detail/${wordList.id}`}
