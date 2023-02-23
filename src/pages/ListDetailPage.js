@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import { GiTeacher, GiFiles } from 'react-icons/gi'
 import { BsFillPencilFill, BsFillTrashFill } from 'react-icons/bs'
@@ -7,6 +7,7 @@ import { BsFillPencilFill, BsFillTrashFill } from 'react-icons/bs'
 import ListRow from "../components/WordList/ListRow";
 
 const ListDetailPage = () => {
+    const navigate = useNavigate();
     const { listId } = useParams();
     const [wordList, setWordList] = useState({});
     const [keyWordMatchs, setKeyWordMatchs] = useState([]);
@@ -26,13 +27,16 @@ const ListDetailPage = () => {
         setKeyWordMatchs(words);
     }
 
+    const startLearnMode = ()=>{
+        keyWordMatchs.length < 10 ? alert('For learning mode, the list must have at least 10 words') : navigate(`/learn/${listId}`);
+    }
+
     return (
         <div className="container mt-2">
-
             <h1>{wordList.title} <small className="text-muted" style={{ fontSize: '15px' }}>{keyWordMatchs.length} words</small></h1>
             <div className="row">
                 <div className="col-3">
-                    <button className="btn btn-outline-success btn-lg w-100"><GiTeacher /> Learn</button>
+                    <button className="btn btn-outline-success btn-lg w-100" onClick={startLearnMode}  ><GiTeacher /> Learn</button>
                 </div>
                 <div className="col-3">
                     <button className="btn btn-outline-warning btn-lg w-100"><GiFiles /> Cards</button>
