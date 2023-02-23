@@ -5,8 +5,6 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { changeInfoText } from "../redux/navbarSlice";
 // components
 import MultipleChoice from "../components/LearnMode/MultipleChoice";
 import ProgressBar from "../components/LearnMode/ProgressBar";
@@ -14,11 +12,11 @@ import Quiz from "../components/LearnMode/Quiz";
 import ShowCorrect from "../components/LearnMode/ShowCorrect";
 import Complated from "../components/LearnMode/Complated";
 // helpers
-import { getQuizWordsByQue, getSimilarChoices, getUntestedWordByQue, shuffleWordList } from "../helpers/learnMode";
+import { getQuizWordsByQue, getSimilarChoices, getUntestedWordByQue, shuffleWordList, resetWordList } from "../helpers/learnMode";
 
 
 const LearnPage = () => {
-    const { listId } = useParams(); // get wordList id from react-router params
+    const { listId } = useParams(); // get wordList id from react-router params    
     /**
      * set panel mode for different components
      * modes: multiple | quiz | show-correct | complated
@@ -155,6 +153,11 @@ const LearnPage = () => {
         setShowCorrect(false);
     }
 
+    const resetProgress = ()=>{
+        let response = window.confirm('Are you sure to reset your progress');
+        if (response) resetWordList(listId);
+        initList();
+    }
 
     return (
         <div className="row justify-content-center ">
@@ -164,7 +167,7 @@ const LearnPage = () => {
                     <label for="success" class="switch-box-slider"></label>
                     <label for="success" class="switch-box-label"> <span style={{ verticalAlign: 'middle' }}> Reverse List</span></label>
                     <Link className="btn btn-outline-warning btn-sm" style={{float: 'right'}} to={`/list-detail/${listId}`} >Cancel</Link>
-                    <button className="btn btn-outline-danger btn-sm me-2" style={{float: 'right'}} >Reset Progress</button>
+                    <button className="btn btn-outline-danger btn-sm me-2" style={{float: 'right'}} onClick={resetProgress} >Reset Progress</button>
                 </div>
                 {(mode === 'multiple' && !showCorrect) && <MultipleChoice word={questionWord} correctAnswer={answerWord} choices={multipleChoices} answerMultiple={answerMultiple} isCorrect={isCorrect} />}
                 {(mode === 'quiz' && !showCorrect) && <Quiz word={questionWord} answerQuiz={answerQuiz} isCorrect={isCorrect} />}

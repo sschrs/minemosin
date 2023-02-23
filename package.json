@@ -11,11 +11,12 @@
     "@testing-library/user-event": "^13.5.0",
     "@use-it/event-listener": "^0.1.7",
     "bootstrap": "^5.2.3",
-    "electron": "^23.1.0",
     "electron-is-dev": "^2.0.0",
+    "i18next": "^22.4.10",
     "leven-sort": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.1.5",
     "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
@@ -31,7 +32,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
-    "electron": "wait-on tcp:3000 && electron ."
+    "electron": "wait-on tcp:3000 && electron .",
+    "build-app": "npm run build && electron-builder"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +55,52 @@
   },
   "devDependencies": {
     "concurrently": "^7.6.0",
+    "electron": "^23.1.0",
+    "electron-builder": "^23.6.0",
     "wait-on": "^7.0.1"
+  },
+  "build": {
+    "appId": "com.sschrs.minemosin",
+    "productName": "minemosin",
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "extraResources": [
+      {
+        "from": "./db/",
+        "to": "db/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "target": "dmg",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": true
+    },
+    "dmg": {
+      "iconSize": 100,
+      "contents": [
+        {
+          "x": 255,
+          "y": 85,
+          "type": "file"
+        },
+        {
+          "x": 253,
+          "y": 325,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 500,
+        "height": 500
+      }
+    }
   }
 }
