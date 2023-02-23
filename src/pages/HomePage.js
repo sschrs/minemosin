@@ -4,12 +4,14 @@
  */
 import React, { useEffect, useState } from "react";
 import ListCard from "../components/HomePage/ListCard";
+import { useTranslation } from "react-i18next";
 
 /**
  * lists all word lists
  */
 const HomePage = () => {
     const [lists, setLists] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         getLists();
@@ -22,8 +24,9 @@ const HomePage = () => {
     }
 
     return (
-        <div className="container mt-4">
+        <div className="container">
             <div className="row equal">
+                <h1>{t('homepage.title')}</h1>
                 {lists.map((wordList, index) => {
                     return (
                         <ListCard

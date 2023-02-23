@@ -5,6 +5,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 // components
 import MultipleChoice from "../components/LearnMode/MultipleChoice";
 import ProgressBar from "../components/LearnMode/ProgressBar";
@@ -12,10 +13,12 @@ import Quiz from "../components/LearnMode/Quiz";
 import ShowCorrect from "../components/LearnMode/ShowCorrect";
 import Complated from "../components/LearnMode/Complated";
 // helpers
-import { getQuizWordsByQue, getSimilarChoices, getUntestedWordByQue, shuffleWordList, resetWordList } from "../helpers/learnMode";
+import { getQuizWordsByQue, getSimilarChoices, getUntestedWordByQue, shuffleWordList, resetWordList, checkQuizAnswer } from "../helpers/learnMode";
+
 
 
 const LearnPage = () => {
+    const { t } = useTranslation();
     const { listId } = useParams(); // get wordList id from react-router params    
     /**
      * set panel mode for different components
@@ -120,7 +123,7 @@ const LearnPage = () => {
     const answerQuiz = async (answer) => {
         let addQue;
         let addPriority;
-        if (answer === answerWord) {
+        if (checkQuizAnswer(answer, answerWord)) {
             addPriority = -1;
             currentWord.priority <= 1 ? addQue = 0 : addQue = 24 / (currentWord.priority + addPriority)
             window.electron.updateKeyWordMatchById({ id: currentWord.id, set: `priority = ${currentWord.priority + addPriority}, que = ${currentWord.que + addQue}` })
@@ -153,7 +156,7 @@ const LearnPage = () => {
         setShowCorrect(false);
     }
 
-    const resetProgress = ()=>{
+    const resetProgress = () => {
         let response = window.confirm('Are you sure to reset your progress');
         if (response) resetWordList(listId);
         initList();
@@ -162,18 +165,20 @@ const LearnPage = () => {
     return (
         <div className="row justify-content-center ">
             <div className="col-10">
-                <div class="switch-box is-success ms-2">
-                    <input id="success" class="switch-box-input" type="checkbox" onChange={e => setReverse(e.target.checked)} />
-                    <label for="success" class="switch-box-slider"></label>
-                    <label for="success" class="switch-box-label"> <span style={{ verticalAlign: 'middle' }}> Reverse List</span></label>
-                    <Link className="btn btn-outline-warning btn-sm" style={{float: 'right'}} to={`/list-detail/${listId}`} >Cancel</Link>
-                    <button className="btn btn-outline-danger btn-sm me-2" style={{float: 'right'}} onClick={resetProgress} >Reset Progress</button>
-                </div>
+                {(mode != 'complated') &&
+                    <div class="switch-box is-success ms-2">
+                        <input id="success" className="switch-box-input" type="checkbox" onChange={e => setReverse(e.target.checked)} />
+                        <label htmlFor="success" className="switch-box-slider"></label>
+                        <label htmlFor="success" className="switch-box-label"> <span style={{ verticalAlign: 'middle' }}> {t('learn.reverseList')}</span></label>
+                        <Link className="btn btn-outline-warning btn-sm" style={{ float: 'right' }} to={`/list-detail/${listId}`} >{t('shared.cancel')}</Link>
+                        <button className="btn btn-outline-danger btn-sm me-2" style={{ float: 'right' }} onClick={resetProgress} >{t('learn.resetProgress')}</button>
+                    </div>
+                }
                 {(mode === 'multiple' && !showCorrect) && <MultipleChoice word={questionWord} correctAnswer={answerWord} choices={multipleChoices} answerMultiple={answerMultiple} isCorrect={isCorrect} />}
                 {(mode === 'quiz' && !showCorrect) && <Quiz word={questionWord} answerQuiz={answerQuiz} isCorrect={isCorrect} />}
                 {(mode === 'complated') && <Complated listId={listId} />}
                 {(showCorrect) && <ShowCorrect showCorrectData={showCorrectData} closePanel={closeCorrectAnswerPanel} />}
-                <ProgressBar listId={listId} />
+                {(mode != 'complated') && <ProgressBar listId={listId} />}
             </div>
         </div>
     )

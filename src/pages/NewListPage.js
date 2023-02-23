@@ -9,6 +9,7 @@ import { changeInfoText } from "../redux/navbarSlice";
 
 import Input from "../components/shared/Input";
 import ListRow from "../components/WordList/ListRow";
+import { useTranslation } from "react-i18next";
 
 /**
  * Add a new list or edit existing one
@@ -19,7 +20,7 @@ const NewListPage = () => {
     const { listId } = useParams(); // get id from react-router params | if exists edit the list
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
+    const { t } = useTranslation();
     const [insertedListId, setInsertedListId] = useState(listId ? listId : 0); // if listId not exists (new-list) initial with 0
     const [listName, setListName] = useState("Untitled List");
     const [inputKey, setIputKey] = useState("");
@@ -33,7 +34,7 @@ const NewListPage = () => {
     const listNameInputRef = useRef(null);
 
     useEffect(() => {
-        listId ? dispatch(changeInfoText("Edit List")) : dispatch(changeInfoText("Add New List")) // change info text in the navbar according to listId
+        listId ? dispatch(changeInfoText(t('navbar.editList'))) : dispatch(changeInfoText(t('navbar.addList'))) // change info text in the navbar according to listId
         /**
          * if listId exists get relevant records from db
          */
@@ -177,22 +178,22 @@ const NewListPage = () => {
         <div className="container">
             <div className="row">
                 <div className="col-10">
-                    <Input type="text" name="listname" placeholder="Give a name for your list:" onChange={e => setListName(e.target.value)} innerRef={listNameInputRef} onKeyDown={handleTitleUpdate} />
+                    <Input type="text" name="listname" placeholder={t('newList.listNameInput.placeholder')} onChange={e => setListName(e.target.value)} innerRef={listNameInputRef} onKeyDown={handleTitleUpdate} />
                 </div>
                 <div className="col-2">
                     {insertedListId == 0
-                        ? <Link className="btn btn-outline-warning w-100 mt-4" to='/' >Cancel</Link>
-                        : <button className="btn btn-outline-success w-100 mt-4" onClick={saveAndQuit}>Save</button>
+                        ? <Link className="btn btn-outline-warning w-100 mt-4" to='/' >{t('shared.cancel')}</Link>
+                        : <button className="btn btn-outline-success w-100 mt-4" onClick={saveAndQuit}>{t('shared.save')}</button>
                     }
                 </div>
                 <div className="col-5">
-                    <Input type="text" name="key" placeholder="Key:" onChange={e => setIputKey(e.target.value)} innerRef={keyInputRef} />
+                    <Input type="text" name="key" placeholder={t('shared.key')} onChange={e => setIputKey(e.target.value)} innerRef={keyInputRef} />
                 </div>
                 <div className="col-5">
-                    <Input type="text" name="value" placeholder="Value:" onChange={e => setInputValue(e.target.value)} onKeyDown={handleKeyDown} innerRef={valueInputRef} />
+                    <Input type="text" name="value" placeholder={t('shared.value')} onChange={e => setInputValue(e.target.value)} onKeyDown={handleKeyDown} innerRef={valueInputRef} />
                 </div>
                 <div className="col-2">
-                    <button className="btn btn-outline-info w-100 mt-4" onClick={addNewItem} >Add Word</button>
+                    <button className="btn btn-outline-info w-100 mt-4" onClick={addNewItem} >{t('newList.addWord')}</button>
                 </div>
                 <hr className="mt-2" />
             </div>
