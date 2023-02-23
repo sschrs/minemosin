@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ProgressBar = (props) => {
+    const { t } = useTranslation();
     const { listId } = props;
     const [percent, setPercent] = useState(0);
     const [complatedWords, setComplatedWords] = useState(0);
@@ -23,7 +25,7 @@ const ProgressBar = (props) => {
             <div className="progress mt-3">
                 <div className="progress-bar progress-bar-striped bg-secondary" style={{ width: `${percent}%` }}></div>
             </div>
-            <small className="text-muted">You learned: {percent}% - {complatedWords}/{totalWords}</small>
+            <small className="text-muted">{t('learn.progressBar.youLearned')}: {percent}% - {complatedWords}/{totalWords}</small>
         </div>
 
     )

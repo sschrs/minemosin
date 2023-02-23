@@ -2,8 +2,10 @@ import React from "react";
 import useEventListener from "@use-it/event-listener";
 
 import { AiOutlineCheckCircle } from 'react-icons/ai'
+import { useTranslation } from "react-i18next";
 
 const MultipleChoice = (props) => {
+    const { t } = useTranslation();
     const { word, choices, correctAnswer, answerMultiple, isCorrect } = props;
     useEventListener('keydown', (event) => {
         if (event.key == 1) answerMultiple(choices[0])
@@ -14,9 +16,9 @@ const MultipleChoice = (props) => {
     return (
         <div className="pt-2">
             <div className="bg-secondary p-4 rounded" style={isCorrect ? {border: '1px solid #88DD83'} : {}}>
-                <div className="text-muted">Word:</div>
+                <div className="text-muted">{t('shared.word')}:</div>
                 <h3> {word} </h3>
-                <div className="text-muted mt-3">Answer:</div>
+                <div className="text-muted mt-3">{t('shared.answer')}:</div>
 
                 <div className="row">
                     <div className="col-3">

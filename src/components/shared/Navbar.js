@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 //react-icons
 import { BiImport } from 'react-icons/bi'
-import { AiOutlinePlusCircle } from 'react-icons/ai'
+import { AiFillPlusCircle, AiFillHome } from 'react-icons/ai'
 
 const Navbar = () => {
     const navbarInfoText = useSelector(state => state.navbar.navbarInfoText);
@@ -13,16 +13,19 @@ const Navbar = () => {
             <nav className="navbar navbar-expand bg-body-tertiary navbar-dark container">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">minemosin</Link>
-                    <span>{ navbarInfoText }</span>
+                    <span>{navbarInfoText}</span>
                     <div>
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link className="nav-link" style={{ 'fontSize': '20px' }} aria-current="page" to="/new-list"><AiOutlinePlusCircle /></Link>
+                                <Link className="nav-link" style={{ 'fontSize': '20px' }} aria-current="page" to="/"><AiFillHome /></Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" style={{ 'fontSize': '20px' }} aria-current="page" to="/new-list"><AiFillPlusCircle /></Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" style={{ 'fontSize': '20px' }} aria-current="page" to="/import"><BiImport /></Link>
                             </li>
-                           
+
                         </ul>
                     </div>
                 </div>
