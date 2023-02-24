@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const isDev = require('electron-is-dev'); // to check if electron is in development mode
 const path = require('path');
 const { initDB } = require('./database/init');
@@ -26,6 +26,8 @@ const createWindow = () => {
         },
     });
 
+    mainWindow.setIcon(path.join(__dirname, 'assets/icon.png'));
+
     mainWindow.loadURL(
         isDev
             ? 'http://localhost:3000'
@@ -42,6 +44,11 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     app.quit();
 });
+
+
+ipcMain.handle('openInBrowser', (event, link) => {
+    shell.openExternal(link);
+})
 
 // init ipcMain handlers for db actions
 initialDBEvents();
