@@ -75,10 +75,15 @@
         "filter": [
           "**/*"
         ]
+      },
+      {
+        "from" : ".build/static/media/medal.b4da14b585c28396ba35.png",
+        "to": "assets/medal.b4da14b585c28396ba35.png"
       }
     ],
     "mac": {
       "target": "dmg",
+      "icon": "./build/assets/icon.icns",
       "hardenedRuntime": true,
       "gatekeeperAssess": true
     },
@@ -101,6 +106,10 @@
         "width": 500,
         "height": 500
       }
+    },
+    "win": {
+      "icon": "./build/assets/icon.ico",
+      "target": ["7z"]
     }
   }
 }
