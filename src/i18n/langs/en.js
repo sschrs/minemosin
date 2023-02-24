@@ -1,4 +1,5 @@
 export const en = {
+    // Shared
     'shared.key' : 'Key',
     'shared.value': 'Value',
     'shared.cancel': 'Cancel',
@@ -8,8 +9,12 @@ export const en = {
     'shared.words': 'words',
     'shared.okey': 'Okey',
     'shared.goHome': 'Go Home',
+    
     // Homepage
     'homepage.title' : 'Your Sets:',
+    'homepage.noList': 'You don\'t have any study sets yet',
+    'homepage.createNew': 'Create New',
+    'homepage.import': 'Import File',
 
     //NewListPage - EditListPage
     'navbar.editList': 'Edit List',
@@ -32,7 +37,28 @@ export const en = {
     'learn.progressBar.youLearned': 'You Learned',
     'learn.showCorrect.yourAnswer': 'Your Answer',
     'learn.showCorrect.correct': 'Correct',
-    'learn.complated.congrats': 'Congratulations!',
-    'learn.complated.message' : 'You Learned Everything!',
-    'learn.complated.restart': 'Restart List'
+    'learn.completed.congrats': 'Congratulations!',
+    'learn.completed.message' : 'You Learned Everything!',
+    'learn.completed.restart': 'Restart List',
+
+    // ImportPage
+    'navbar.importTitle' : 'Import List',
+    'import.defaultListTitle': 'Imported Study Set',
+    'import.textarea.placeholder': 'Paste from your csv or excel file',
+    'import.comma' : 'Comma',
+    'import.comma.info': 'for csv files',
+    'import.tab': 'Tab',
+    'import.tab.info' : 'for excel files',
+    'import.newLine': 'New Line',
+    'import.newLine.info': 'for csv and excel files',
+    'import.semicolon' : 'Semicolon',
+    'import.importButton': 'Import',
+    'import.wordSeperator': 'Word Seperator',
+    'import.rowSeperator': 'Row Seperator',
+    'import.rows': 'rows',
+
+    // Settings
+    'settings.title' : 'Settings',
+    'settings.language': 'Language',
+    
 }

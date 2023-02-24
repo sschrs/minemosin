@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 //react-icons
 import { BiImport } from 'react-icons/bi'
 import { AiFillPlusCircle, AiFillHome } from 'react-icons/ai'
+import { BsFillGearFill } from 'react-icons/bs'
 
 const Navbar = () => {
     const navbarInfoText = useSelector(state => state.navbar.navbarInfoText);
@@ -25,7 +26,9 @@ const Navbar = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" style={{ 'fontSize': '20px' }} aria-current="page" to="/import"><BiImport /></Link>
                             </li>
-
+                            <li className="nav-item">
+                                <Link className="nav-link" style={{ 'fontSize': '20px' }} aria-current="page" to="/settings"><BsFillGearFill /></Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
