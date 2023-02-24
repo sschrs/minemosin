@@ -11,7 +11,7 @@ import MultipleChoice from "../components/LearnMode/MultipleChoice";
 import ProgressBar from "../components/LearnMode/ProgressBar";
 import Quiz from "../components/LearnMode/Quiz";
 import ShowCorrect from "../components/LearnMode/ShowCorrect";
-import Complated from "../components/LearnMode/Complated";
+import Completed from "../components/LearnMode/Completed";
 // helpers
 import { getQuizWordsByQue, getSimilarChoices, getUntestedWordByQue, shuffleWordList, resetWordList, checkQuizAnswer } from "../helpers/learnMode";
 
@@ -22,10 +22,10 @@ const LearnPage = () => {
     const { listId } = useParams(); // get wordList id from react-router params    
     /**
      * set panel mode for different components
-     * modes: multiple | quiz | show-correct | complated
+     * modes: multiple | quiz | show-correct | completed
      * multiple: multiple choice questions
      * quiz: requires input of correct answer
-     * complated: in case the list is complate
+     * completed: in case the list is complete
      */
     const [mode, setMode] = useState('multiple');
     const [showCorrect, setShowCorrect] = useState(false); // to show correction in case of wrong answer
@@ -79,7 +79,7 @@ const LearnPage = () => {
      */
     const answerMultiple = async (answer) => {
         if (answerWord === answer) {
-            await window.electron.updateKeyWordMatchById({ id: currentWord.id, set: 'testComplated = 1' }); // if answer is correct set testComplated to 1
+            await window.electron.updateKeyWordMatchById({ id: currentWord.id, set: 'testCompleted = 1' }); // if answer is correct set testCompleted to 1
             // update state to show success border for a second
             setIsCorrect(true);
             setTimeout(() => {
@@ -116,7 +116,7 @@ const LearnPage = () => {
             reverse ? setQuestionWord(word.key) : setQuestionWord(word.value);
             reverse ? setAnswerWord(word.value) : setAnswerWord(word.key);
         } else {
-            setMode('complated');
+            setMode('completed');
         }
     }
 
@@ -165,7 +165,7 @@ const LearnPage = () => {
     return (
         <div className="row justify-content-center ">
             <div className="col-10">
-                {(mode != 'complated') &&
+                {(mode != 'completed') &&
                     <div class="switch-box is-success ms-2">
                         <input id="success" className="switch-box-input" type="checkbox" onChange={e => setReverse(e.target.checked)} />
                         <label htmlFor="success" className="switch-box-slider"></label>
@@ -176,9 +176,9 @@ const LearnPage = () => {
                 }
                 {(mode === 'multiple' && !showCorrect) && <MultipleChoice word={questionWord} correctAnswer={answerWord} choices={multipleChoices} answerMultiple={answerMultiple} isCorrect={isCorrect} />}
                 {(mode === 'quiz' && !showCorrect) && <Quiz word={questionWord} answerQuiz={answerQuiz} isCorrect={isCorrect} />}
-                {(mode === 'complated') && <Complated listId={listId} />}
+                {(mode === 'completed') && <Completed listId={listId} />}
                 {(showCorrect) && <ShowCorrect showCorrectData={showCorrectData} closePanel={closeCorrectAnswerPanel} />}
-                {(mode != 'complated') && <ProgressBar listId={listId} />}
+                {(mode != 'completed') && <ProgressBar listId={listId} />}
             </div>
         </div>
     )

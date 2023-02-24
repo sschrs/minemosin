@@ -110,7 +110,7 @@ const NewListPage = () => {
                 key: inputKey,
                 value: inputValue,
                 que: keyWordMatchs.length + 1,
-                testComplated: 0,
+                testCompleted: 0,
                 priority: 1,
             };
             const insertedMatchId = await window.electron.insertKeyWordMatch(newMatchData); // get id of inserted match

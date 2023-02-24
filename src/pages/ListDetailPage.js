@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
-import { GiTeacher, GiFiles } from 'react-icons/gi'
+import { GiTeacher } from 'react-icons/gi'
 import { BsFillPencilFill, BsFillTrashFill } from 'react-icons/bs'
 
 import ListRow from "../components/WordList/ListRow";
@@ -46,16 +46,13 @@ const ListDetailPage = () => {
         <div className="container mt-2">
             <h1>{wordList.title} <small className="text-muted" style={{ fontSize: '15px' }}>{keyWordMatchs.length} {t('shared.words')}</small></h1>
             <div className="row">
-                <div className="col-3">
+                <div className="col-4">
                     <button className="btn btn-outline-success btn-lg w-100" onClick={startLearnMode}  ><GiTeacher /> {t('listDetail.learn')}</button>
                 </div>
-                <div className="col-3">
-                    <button className="btn btn-outline-warning btn-lg w-100"><GiFiles /> {t('listDetail.cards')}</button>
-                </div>
-                <div className="col-3">
+                <div className="col-4">
                     <Link to={`/edit-list/${listId}`} className="btn btn-outline-info btn-lg w-100"><BsFillPencilFill /> {t('listDetail.edit')}</Link>
                 </div>
-                <div className="col-3">
+                <div className="col-4">
                     <button className="btn btn-outline-danger btn-lg w-100" onClick={deleteWordList} ><BsFillTrashFill /> {t('listDetail.delete')}</button>
                 </div>
             </div>
