@@ -1,5 +1,10 @@
+/**
+ * @author Süleyman Özarslan
+ * @version 1.0.0
+ */
 const { db } = require('./database');
 
+//initialize db
 module.exports.initDB = () => {
     db.serialize(() => {
         // create wordList table

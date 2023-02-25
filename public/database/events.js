@@ -1,11 +1,17 @@
-const { ipcRenderer, ipcMain } = require("electron");
+/**
+ * @author Süleyman Özarslan
+ * @version 1.0.0
+ */
+const { ipcMain } = require("electron");
 const { keyWordMatchsModel } = require("./models/keyWordMatchsModel");
 const { wordListModel } = require("./models/wordListModel");
 const { configModel } = require('./models/configModel')
 
-
+/**
+ * handle ipcRenderer requests from react and perform database actions
+ */
 module.exports.initialDBEvents = () => {
-
+    // wordList table
     ipcMain.handle('db.selectAll.wordList', (event, data) => {
         return wordListModel.getAll(data);
     })
@@ -27,6 +33,7 @@ module.exports.initialDBEvents = () => {
         return wordListModel.deleteById(data);
     })
 
+    // keyWordMatch table
     ipcMain.handle('db.selectAll.keyWordMatch', (event, data) => {
         return keyWordMatchsModel.getAll(data);
     })
@@ -63,6 +70,7 @@ module.exports.initialDBEvents = () => {
         return keyWordMatchsModel.updateById(id, set);
     })
 
+    // config table
     ipcMain.handle('config.getLang', (event, data)=>{
         return configModel.getLanguage();
     })

@@ -40,11 +40,20 @@ export const shuffleWordList = async (wordListId) => {
     await window.electron.updateWordListById({ id: wordListId, setString: 'inProgress = 1' })
 }
 
+/**
+ * reset progress for wordList
+ * @param {number} wordListId 
+ */
 export const resetWordList = async (wordListId) => {
-    await window.electron.updateWordListById({ id: wordListId, setString: 'inProgress = 0' });
-    await window.electron.updateKeyWordMatch({ where: `wordListId = ${wordListId}`, setString: 'testCompleted = 0, priority = 1' });
+    await window.electron.updateWordListById({ id: wordListId, setString: 'inProgress = 0' }); // update inProgress in wordList
+    await window.electron.updateKeyWordMatch({ where: `wordListId = ${wordListId}`, setString: 'testCompleted = 0, priority = 1' }); // update all matchs in wordList
 }
 
+/**
+ * get untested words by que
+ * @param {number} wordListId 
+ * @returns {string} - untested word
+ */
 export const getUntestedWordByQue = async (wordListId) => {
     const data = { where: `wordListId = ${wordListId} AND testCompleted = 0`, limit: 1 }
     const words = await window.electron.getAllKeyWordMatchsWithLimitByQue(data);
@@ -52,6 +61,11 @@ export const getUntestedWordByQue = async (wordListId) => {
     return undefined;
 }
 
+/**
+ * get tested but not completed words
+ * @param {number} wordListId 
+ * @returns {string} - word
+ */
 export const getQuizWordsByQue = async (wordListId) => {
     const data = {
         where: `wordListId = ${wordListId} AND testCompleted = 1 AND priority != 0`,
@@ -62,6 +76,13 @@ export const getQuizWordsByQue = async (wordListId) => {
     return undefined;
 }
 
+/**
+ * get similar choices for one word
+ * @param {number} wordListId 
+ * @param {string} word 
+ * @param {boolean} reverse 
+ * @returns {array} - similar words
+ */
 export const getSimilarChoices = async (wordListId, word, reverse = false) => {
     const words = await window.electron.getAllKeyWordMatchs(`wordListId = ${wordListId}`)
     let strings = new Array();
@@ -73,6 +94,13 @@ export const getSimilarChoices = async (wordListId, word, reverse = false) => {
     return shuffleArray(sorted.slice(0, 4));
 }
 
+/**
+ * check is an answer correct
+ * split by comma and check if correct answer includes the given answer
+ * @param {string} answer 
+ * @param {string} correctAnswer 
+ * @returns {boolean} isCorrect
+ */
 export const checkQuizAnswer = (answer, correctAnswer) => {
     const answerList = answer.split(',');
     const correctList = correctAnswer.split(',');

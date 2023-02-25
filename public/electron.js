@@ -1,3 +1,7 @@
+/**
+ * @author Süleyman Özarslan
+ * @version 1.0.0
+ */
 const { app, BrowserWindow, ipcMain, shell, dialog } = require('electron');
 const isDev = require('electron-is-dev'); // to check if electron is in development mode
 const path = require('path');
@@ -30,10 +34,11 @@ const createWindow = () => {
 
     mainWindow.loadURL(
         isDev
-            ? 'http://localhost:3000'
-            : `file://${path.join(__dirname, '../build/index.html')}`
+            ? 'http://localhost:3000' // if in development
+            : `file://${path.join(__dirname, '../build/index.html')}` // if in production
     );
 
+    // handle confirmation dialog
     ipcMain.handle('confirmDialog', (event, data) => {
         const { title, message } = data;
         return dialog.showMessageBox(mainWindow, {

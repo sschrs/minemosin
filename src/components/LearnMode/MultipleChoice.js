@@ -1,12 +1,21 @@
+/**
+ * @author Süleyman Özarslan
+ */
 import React from "react";
 import useEventListener from "@use-it/event-listener";
-
-import { AiOutlineCheckCircle } from 'react-icons/ai'
 import { useTranslation } from "react-i18next";
 
+/**
+ * multiple choice test component
+ * @param {object} props 
+ */
 const MultipleChoice = (props) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(); // i18n
     const { word, choices, correctAnswer, answerMultiple, isCorrect } = props;
+    /**
+     * handle keydowns
+     * if key is one of [1,2,3,4] answer the question by index number
+     */
     useEventListener('keydown', (event) => {
         if (event.key == 1) answerMultiple(choices[0])
         else if (event.key == 2) answerMultiple(choices[1])

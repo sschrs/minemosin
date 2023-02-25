@@ -1,17 +1,27 @@
+/**
+ * @author Süleyman Özarslan
+ * @version 1.0.0
+ */
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { resetWordList } from "../../helpers/learnMode";
 import { useTranslation } from "react-i18next";
 import { RiMedalFill } from 'react-icons/ri';
 
+/**
+ * when learn-mode is completed show this component
+ * @param {object} props 
+ */
 const Completed = (props)=>{
-    const { t } = useTranslation();
+    const { t } = useTranslation(); // i18n
     const { listId } = props;
     const navigate = useNavigate();
+
     const resetList = async ()=>{
         await resetWordList(listId);
         navigate(`/list-detail/${listId}`);
     }
+    
     return (
         <div className="text-center">
             <h1 className="text-success" style={{fontSize: '200px'}}><RiMedalFill/></h1>

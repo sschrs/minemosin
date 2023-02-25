@@ -1,5 +1,13 @@
+/**
+ * @author Süleyman Özarslan
+ * @version 1.0.0
+ */
 const { ipcRenderer, contextBridge } = require('electron');
 
+/**
+ * provides communication between react and electron
+ * functions can be used from window.electron in react
+ */
 contextBridge.exposeInMainWorld('electron', {
     //events of word lists
     getAllWordLists: (data) => ipcRenderer.invoke('db.selectAll.wordList', data),

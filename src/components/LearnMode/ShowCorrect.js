@@ -1,14 +1,23 @@
+/**
+ * @author Süleyman Özarslan
+ * @version 1.0.0
+ */
 import React from "react";
 import useEventListener from "@use-it/event-listener";
 
 import { ImCross, ImCheckmark } from 'react-icons/im'
 import { useTranslation } from "react-i18next";
 
+/**
+ * in case of wrong answer show the correct one
+ * @param {object} props 
+ */
 const ShowCorrect = (props) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(); // i18n
     const { showCorrectData, closePanel } = props;
     const { word, wrongAnswer, correctAnswer } = showCorrectData;
 
+    // if keydown is enter close panel and return the learn-mode
     useEventListener('keydown', event => {
         if (event.key === 'Enter') closePanel();
     });

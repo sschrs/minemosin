@@ -1,19 +1,32 @@
+/**
+ * @author Süleyman Özarslan
+ * @version 1.0.0
+ */
 import React, { useRef, useState, useEffect } from "react";
 import useEventListener from "@use-it/event-listener";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Quiz as typing the answer
+ * @param {object} props 
+ */
 const Quiz = (props) => {
-    const { t } = useTranslation();
-    const [answer, setAnswer] = useState();
+    const { t } = useTranslation(); // i18n
+    const [answer, setAnswer] = useState("");
     const { word, answerQuiz, isCorrect } = props
-    const inputRef = useRef();
+    const inputRef = useRef(); // answer input reference
 
     useEffect(()=>{
-        inputRef.current.focus();
+        inputRef.current.focus(); // focus input every turn
     })
 
+    /**
+     * handle keydowns
+     * if key is enter or tab answer the question by input value
+     */
     useEventListener('keydown', event => {
         if (event.key === 'Enter' || event.key === 'Tab'){
+            if (inputRef.current.value === "") setAnswer("");
             answerQuiz(answer);
             inputRef.current.value = "";
         } 

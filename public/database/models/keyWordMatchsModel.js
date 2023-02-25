@@ -1,3 +1,7 @@
+/**
+ * @author Süleyman Özarslan
+ * @version 1.0.0
+ */
 const { db } = require('../database');
 
 const tableName = "keyWordMatchs";

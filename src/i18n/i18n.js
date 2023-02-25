@@ -1,3 +1,7 @@
+/**
+ * @author Süleyman Özarslan
+ * @version 1.0.0
+ */
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { lang } from './language';
