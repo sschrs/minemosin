@@ -31,15 +31,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start-react": "react-scripts start",
-    "build-react": "react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"concurrently \"npm run start-react\" \"wait-on http://localhost:3000 && npm run electron\" ",
-    "postinstall": "electron-builder install-app-deps",
-    "packapp": "npm run build-react && electron-builder --dir",
-    "pack-build": "electron-builder --dir",
-    "build": "npm run build-react && electron-builder",
+    "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
     "electron": "wait-on tcp:3000 && electron .",
     "build-app": "npm run build && electron-builder"
   },
