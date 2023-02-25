@@ -158,7 +158,7 @@ const LearnPage = () => {
 
     const resetProgress = async () => {
         let result = await window.electron.confirmDialog({ title: '!', message: 'Are you sure to reset your progress?' })
-        if (result.response === 0) resetWordList(listId);
+        if (result.response === 0) await resetWordList(listId);
         initList();
     }
 

@@ -73,30 +73,30 @@ const ImportPage = () => {
             <div className="row">
                 <div className="col-5">
                     <h4>{t('import.wordSeperator')}:</h4>
-                    <div class="form-check" onClick={e => setWordSeperator(',')}>
-                        <input class="form-check-input" type="radio" name="word-seperator" defaultChecked={wordSeperator === ','} />
-                        <label class="form-check-label">
+                    <div className="form-check" onClick={e => setWordSeperator(',')}>
+                        <input className="form-check-input" type="radio" name="word-seperator" defaultChecked={wordSeperator === ','} />
+                        <label className="form-check-label">
                             {t('import.comma')} ( , ) <small className="text-muted">{t('import.comma.info')}</small>
                         </label>
                     </div>
                     <div class="form-check" onClick={e => setWordSeperator('\t')}>
-                        <input class="form-check-input" type="radio" name="word-seperator" defaultChecked={wordSeperator === '\t'} />
-                        <label class="form-check-label">
+                        <input className="form-check-input" type="radio" name="word-seperator" defaultChecked={wordSeperator === '\t'} />
+                        <label className="form-check-label">
                             {t('import.tab')} <small className="text-muted">{t('import.tab.info')}</small>
                         </label>
                     </div>
                 </div>
                 <div className="col-5">
                     <h4>{t('import.rowSeperator')}:</h4>
-                    <div class="form-check" onClick={e => setRowSeperator('\n')}>
-                        <input class="form-check-input" type="radio" name="row-seperator" defaultChecked={rowSeperator === '\n'} />
-                        <label class="form-check-label">
+                    <div className="form-check" onClick={e => setRowSeperator('\n')}>
+                        <input className="form-check-input" type="radio" name="row-seperator" defaultChecked={rowSeperator === '\n'} />
+                        <label className="form-check-label">
                             {t('import.newLine')} <small className="text-muted">{t('import.newLine.info')}</small>
                         </label>
                     </div>
                     <div class="form-check" onClick={e => setRowSeperator(';')}>
-                        <input class="form-check-input" type="radio" name="row-seperator" defaultChecked={rowSeperator === ';'} />
-                        <label class="form-check-label">
+                        <input className="form-check-input" type="radio" name="row-seperator" defaultChecked={rowSeperator === ';'} />
+                        <label className="form-check-label">
                             {t('import.semicolon')} ( ; )
                         </label>
                     </div>
