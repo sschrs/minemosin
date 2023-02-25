@@ -30,7 +30,7 @@ const ListDetailPage = () => {
     }
 
     const startLearnMode = ()=>{
-        keyWordMatchs.length < 10 ? alert(t('listDetail.wordCountAlert')) : navigate(`/learn/${listId}`);
+        keyWordMatchs.length < 10 ? window.electron.dialog({title: '', message: t('listDetail.wordCountAlert')}) : navigate(`/learn/${listId}`);
     }
 
     const deleteWordList = async ()=>{

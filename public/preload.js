@@ -23,5 +23,8 @@ contextBridge.exposeInMainWorld('electron', {
     changeLanguage: (data) => ipcRenderer.invoke('config.changeLang', data),
 
     // open in browser
-    openInBrowser: (link) => ipcRenderer.invoke('openInBrowser', link)
+    openInBrowser: (link) => ipcRenderer.invoke('openInBrowser', link),
+
+    // dialog
+    dialog: (data) => ipcRenderer.invoke('dialog', data)
 });

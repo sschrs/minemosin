@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell } = require('electron');
+const { app, BrowserWindow, ipcMain, shell, dialog } = require('electron');
 const isDev = require('electron-is-dev'); // to check if electron is in development mode
 const path = require('path');
 const { initDB } = require('./database/init');
@@ -48,6 +48,11 @@ app.on('window-all-closed', () => {
 
 ipcMain.handle('openInBrowser', (event, link) => {
     shell.openExternal(link);
+})
+
+ipcMain.handle('dialog', (event, data) => {
+    const { title, message } = data;
+    dialog.showErrorBox(title, message);
 })
 
 // init ipcMain handlers for db actions
