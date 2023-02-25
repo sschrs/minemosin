@@ -1,6 +1,10 @@
 {
   "name": "minemosin",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Minemosin is a key-value based, completely free and open source learning tool.",
+  "author": "Süleyman Özarslan",
+  "repository": "https://github.com/sschrs/minemosin",
+  "license": "MIT",
   "private": true,
   "main": "public/electron.js",
   "homepage": "./",
@@ -27,11 +31,15 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start-react": "react-scripts start",
+    "build-react": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
+    "dev": "concurrently \"concurrently \"npm run start-react\" \"wait-on http://localhost:3000 && npm run electron\" ",
+    "postinstall": "electron-builder install-app-deps",
+    "packapp": "npm run build-react && electron-builder --dir",
+    "pack-build": "electron-builder --dir",
+    "build": "npm run build-react && electron-builder",
     "electron": "wait-on tcp:3000 && electron .",
     "build-app": "npm run build && electron-builder"
   },
@@ -75,10 +83,6 @@
         "filter": [
           "**/*"
         ]
-      },
-      {
-        "from" : ".build/static/media/medal.b4da14b585c28396ba35.png",
-        "to": "assets/medal.b4da14b585c28396ba35.png"
       }
     ],
     "mac": {
@@ -109,7 +113,16 @@
     },
     "win": {
       "icon": "./build/assets/icon.ico",
-      "target": ["7z"]
+      "target": [
+        "7z"
+      ]
+    },
+    "linux" : {
+      "icon" : "./build/assets/icon.png",
+      "target": ["deb", "tar.gz"]
+    },
+    "deb" : {
+      "depends" : ["gconf2", "gconf-service", "libnotify4", "libxtst6", "libnss3"]
     }
   }
 }
