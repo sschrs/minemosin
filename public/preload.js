@@ -26,5 +26,6 @@ contextBridge.exposeInMainWorld('electron', {
     openInBrowser: (link) => ipcRenderer.invoke('openInBrowser', link),
 
     // dialog
-    dialog: (data) => ipcRenderer.invoke('dialog', data)
+    dialog: (data) => ipcRenderer.invoke('dialog', data),
+    confirmDialog: (data) => ipcRenderer.invoke('confirmDialog', data)
 });

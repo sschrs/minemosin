@@ -34,8 +34,8 @@ const ListDetailPage = () => {
     }
 
     const deleteWordList = async ()=>{
-        let response = window.confirm(t('listDetail.confirmDelete'))
-        if (response) {
+        let result = await window.electron.confirmDialog({ title: '!', message: t('listDetail.confirmDelete') });
+        if (result.response === 0) {
             await window.electron.deleteKeyWordMatchByWordListId(listId);
             await window.electron.deleteWordListById(listId);
             navigate('/');

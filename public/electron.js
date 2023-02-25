@@ -33,6 +33,17 @@ const createWindow = () => {
             ? 'http://localhost:3000'
             : `file://${path.join(__dirname, '../build/index.html')}`
     );
+
+    ipcMain.handle('confirmDialog', (event, data) => {
+        const { title, message } = data;
+        return dialog.showMessageBox(mainWindow, {
+            'type': 'question',
+            'title': title,
+            'message': message,
+            'buttons': ['Yes', 'No']
+        })
+    })
+
     return mainWindow;
 };
 
