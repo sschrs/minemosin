@@ -5,6 +5,9 @@
     <p>Minemosin is a key-value based, completely free and open source learning tool.</p>
 </div>
 <img src="https://github.com/sschrs/minemosin/blob/main/screenshots/ss_4.png?raw=true" alt="screenshot" width="100%">
+
+### How to Learn with Minemosin?
+
 minemosin is an open source and completely free tool that makes it easy for you to learn key-value based sets, such as foreign language words. It aims to minimize your learning time by testing you and focusing more on your missing points.
 
 * You can create a new set in minemosin or import your sets in files such as excel or csv.
