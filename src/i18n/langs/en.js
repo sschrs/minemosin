@@ -53,8 +53,8 @@ export const en = {
     'import.newLine.info': 'for csv and excel files',
     'import.semicolon' : 'Semicolon',
     'import.importButton': 'Import',
-    'import.wordSeperator': 'Word Seperator',
-    'import.rowSeperator': 'Row Seperator',
+    'import.wordSeperator': 'Word Separator',
+    'import.rowSeperator': 'Row Separator',
     'import.rows': 'rows',
 
     // Settings

@@ -29,6 +29,7 @@ const SettingsPage = () => {
                     <select className="form-control" onChange={e => changeLang(e.target.value)}>
                         <option value="en" key="en" selected={i18n.language === 'en'} >English</option>
                         <option value="tr" key="tr" selected={i18n.language === 'tr'}  >Turkish (Türkçe)</option>
+                        <option value="de" key="de" selected={i18n.language === 'de'}  >German (Deutsch)</option>
                     </select>
                 </div>
                 <div className="col-5 offset-3">

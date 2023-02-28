@@ -9,7 +9,8 @@ import { lang } from './language';
 i18n.use(initReactI18next).init({
     resources: {
         en: {translations: lang.en},
-        tr: {translations: lang.tr}
+        tr: {translations: lang.tr},
+        de: {translations: lang.de}
     },
     fallbackLng: 'en',
     ns: ['translations'],
